@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Gauge Test</title>
+    <script>var module = { exports: { document: {} } };</script>
     <script src="../gauge.min.js"></script>
     <style>body{padding:0;margin:0;background:#222}</style>
 </head>
@@ -11,7 +12,7 @@
 <canvas id="gauge2"></canvas>
 <div id="console"></div>
 <script>
-new RadialGauge({
+new module.exports.RadialGauge({
     renderTo: 'gauge1',
     width: 400,
     height: 400,
@@ -45,7 +46,7 @@ new RadialGauge({
     animationDuration: 500
 }).draw();
 
-new RadialGauge({ renderTo: 'gauge2' }).draw();
+new module.exports.RadialGauge({ renderTo: 'gauge2' }).draw();
 
 if (!window.addEventListener) {
     window.addEventListener = function(evt, listener) {
@@ -62,7 +63,7 @@ if (!Array.prototype.forEach) {
 }
 // animage all gauges on a page
 window.addEventListener('load', function() {
-    document.gauges.forEach(function(gauge) {
+    module.exports.document.gauges.forEach(function(gauge) {
         setInterval(function() {
             gauge.value = Math.random() *
                 (gauge.options.maxValue - gauge.options.minValue) +
